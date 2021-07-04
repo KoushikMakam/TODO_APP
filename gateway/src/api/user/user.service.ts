@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { USER_SERVICE } from 'src/common/config/constant';
+import { USER_SERVICE } from '../../common/config/constant';
 import { LoginRequestDto, LoginResponseDto } from '../dto/login.dto';
 import { UserDto } from '../dto/user.dto';
 

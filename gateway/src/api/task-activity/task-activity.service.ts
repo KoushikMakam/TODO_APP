@@ -2,7 +2,7 @@ import { Injectable, Scope, Inject, Logger } from '@nestjs/common';
 import { REQUEST } from '@nestjs/core';
 import { Request } from 'express';
 import { ClientProxy } from '@nestjs/microservices';
-import { LOGGED_IN_USER, TODO_SERVICE } from 'src/common/config/constant';
+import { LOGGED_IN_USER, TODO_SERVICE } from '../../common/config/constant';
 import { TaskHistoryDto } from '../dto/task.history.dto';
 
 @Injectable({ scope: Scope.REQUEST })

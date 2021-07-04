@@ -8,7 +8,7 @@ import {
   Logger,
 } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { LOGGED_IN_USER } from 'src/common/config/constant';
+import { LOGGED_IN_USER } from '../../common/config/constant';
 import { UserTokenDto } from '../dto/user.token.dto';
 
 @Injectable()

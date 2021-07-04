@@ -7,10 +7,6 @@ import { AppModule } from './../src/app.module';
 describe('AppController (e2e)', () => {
   let app: INestApplication;
 
-  beforeAll(async () => {
-    await mongoose.connect(process.env.MONGO_DSN, { useNewUrlParser: true });
-    await mongoose.connection.dropDatabase();
-  });
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -21,10 +17,9 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
-  it('Get user(s) test', () => {
+  it('/ Get', () => {
     return request(app.getHttpServer())
-      .get('/user')
-      .expect(200)
-      .expect([]);
+      .get('/')
+      .expect(200);
   });
 });
