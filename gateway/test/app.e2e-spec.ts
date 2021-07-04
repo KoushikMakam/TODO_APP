@@ -7,6 +7,10 @@ import { AppModule } from './../src/app.module';
 describe('AppController (e2e)', () => {
   let app: INestApplication;
 
+  beforeAll(async () => {
+    await mongoose.connect(process.env.MONGO_CONNECTION, { useNewUrlParser: true });
+    //await mongoose.connection.dropDatabase();
+  });
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -17,9 +21,32 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
-  it('/ Get', () => {
+  afterAll(async () => {
+    await app.close()
+  })
+
+  it('Create user and verfiy login sucessful', () => {
+    const userDetails = {
+      name: "Tester1",
+      email: "1@2",
+      password: "password",
+      createdOn: Date.now(),
+      active: true
+    }
+    // Create User
+    request(app.getHttpServer())
+      .post('/user')
+      .send(userDetails)
+      .expect(201);
+
     return request(app.getHttpServer())
-      .get('/')
+      .post('/login')
+      .send({
+        email: userDetails.email,
+        password: userDetails.password
+      })
       .expect(200);
+
   });
+
 });
