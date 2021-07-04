@@ -13,12 +13,9 @@ import { UserService } from './user/user.service';
     JwtModule.registerAsync({
       useClass: JwtConfigService,
     }),
-    MongooseModule.forFeature([
-      { name: User.name, schema: UserSchema },
-    ]),
-    
+    MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
   ],
   controllers: [UserController],
-  providers: [TokenService, UserService, UserRepository]
+  providers: [TokenService, UserService, UserRepository],
 })
-export class ApiModule { }
+export class ApiModule {}

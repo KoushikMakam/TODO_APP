@@ -8,13 +8,13 @@ export class MailerServiceConfig implements MailerOptionsFactory {
         port: 587,
         secure: false, // true for 465, false for other ports
         auth: {
-            user: process.env.EMAIL_ID ?? 'amari.schaefer34@ethereal.email', // generated ethereal user
-            pass: process.env.EMAIL_PASS  ?? 'EjXwsGT5ZTp9ZvgNRf' // generated ethereal password
-        }
-    },
+          user: process.env.EMAIL_ID ?? 'amari.schaefer34@ethereal.email', // generated ethereal user
+          pass: process.env.EMAIL_PASS ?? 'EjXwsGT5ZTp9ZvgNRf', // generated ethereal password
+        },
+      },
       defaults: {
-        from: process.env.MAILER_FROM ?? 'amari.schaefer34@ethereal.email'
-      }
+        from: process.env.MAILER_FROM ?? 'amari.schaefer34@ethereal.email',
+      },
     };
   }
 }

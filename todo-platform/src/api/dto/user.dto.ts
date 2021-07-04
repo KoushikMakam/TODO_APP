@@ -1,4 +1,3 @@
-import { IUser } from "src/repositories/model/user";
+import { IUser } from 'src/repositories/model/user';
 
-export interface UserDto extends IUser{
-}
+export type UserDto = IUser;

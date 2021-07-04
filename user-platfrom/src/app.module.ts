@@ -7,4 +7,4 @@ import { ApiModule } from './api/api.module';
   controllers: [],
   providers: [],
 })
-export class AppModule { }
+export class AppModule {}

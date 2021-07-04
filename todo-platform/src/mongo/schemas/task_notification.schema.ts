@@ -14,4 +14,5 @@ export class TaskNotification extends Base {
   type: string;
 }
 
-export const TaskNotificationSchema = SchemaFactory.createForClass(TaskNotification);
+export const TaskNotificationSchema =
+  SchemaFactory.createForClass(TaskNotification);

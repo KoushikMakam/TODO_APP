@@ -1,6 +1,11 @@
 import { Module } from '@nestjs/common';
 import { ClientProxyFactory } from '@nestjs/microservices';
-import { TODO_SERVICE, TODO_SERVICE_KEY, USER_SERVICE, USER_SERVICE_KEY } from 'src/common/config/constant';
+import {
+  TODO_SERVICE,
+  TODO_SERVICE_KEY,
+  USER_SERVICE,
+  USER_SERVICE_KEY,
+} from 'src/common/config/constant';
 import { DiscoveryService } from 'src/common/service.discovery';
 import { AuthGuard } from './guards/auth.guard';
 import { UserController } from './user/user.controller';
@@ -13,13 +18,18 @@ import { TaskActivityService } from './task-activity/task-activity.service';
 import { TaskActivityController } from './task-activity/task-activity.controller';
 
 @Module({
-  controllers: [UserController, TaskController, TodoController, TaskActivityController],
+  controllers: [
+    UserController,
+    TaskController,
+    TodoController,
+    TaskActivityController,
+  ],
   providers: [
     DiscoveryService,
     {
       provide: USER_SERVICE,
       useFactory: (discoveryService: DiscoveryService) => {
-        const userServiceOptions = discoveryService.get(USER_SERVICE_KEY)
+        const userServiceOptions = discoveryService.get(USER_SERVICE_KEY);
         return ClientProxyFactory.create(userServiceOptions);
       },
       inject: [DiscoveryService],
@@ -27,7 +37,7 @@ import { TaskActivityController } from './task-activity/task-activity.controller
     {
       provide: TODO_SERVICE,
       useFactory: (discoveryService: DiscoveryService) => {
-        const userServiceOptions = discoveryService.get(TODO_SERVICE_KEY)
+        const userServiceOptions = discoveryService.get(TODO_SERVICE_KEY);
         return ClientProxyFactory.create(userServiceOptions);
       },
       inject: [DiscoveryService],
@@ -36,6 +46,7 @@ import { TaskActivityController } from './task-activity/task-activity.controller
     UserService,
     TaskService,
     TodoService,
-    TaskActivityService]
+    TaskActivityService,
+  ],
 })
-export class ApiModule { }
+export class ApiModule {}

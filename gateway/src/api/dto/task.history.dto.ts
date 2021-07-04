@@ -1,13 +1,11 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty } from '@nestjs/swagger';
 
 export class TaskHistoryRequestDto {
-    @ApiProperty({
-        required: true,
-        type: String
-    })
-    status: string;
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  status: string;
 }
 
-export interface TaskHistoryDto extends TaskHistoryRequestDto {
-}
-
+export type TaskHistoryDto = TaskHistoryRequestDto;

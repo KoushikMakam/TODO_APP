@@ -5,7 +5,6 @@ export type UserDocument = User & Document;
 
 @Schema()
 export class User {
-
   @Prop()
   name: string;
 
@@ -20,7 +19,6 @@ export class User {
 
   @Prop()
   active: boolean;
-
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

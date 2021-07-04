@@ -1,9 +1,9 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty } from '@nestjs/swagger';
 
 export class TodoRequestDto {
   @ApiProperty({
     required: true,
-    type: String
+    type: String,
   })
   title: string;
 }

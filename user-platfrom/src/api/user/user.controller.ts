@@ -8,16 +8,13 @@ import { UserService } from './user.service';
 
 @Controller()
 export class UserController {
-
   private readonly logger = new Logger(UserController.name);
 
-  constructor(
-    private readonly service: UserService
-  ) { }
+  constructor(private readonly service: UserService) {}
 
   @MessagePattern({ cmd: 'get_all' })
   async getAll(): Promise<UserDto[]> {
-    this.logger.verbose('Request for get all users received...')
+    this.logger.verbose('Request for get all users received...');
     return await this.service.getAll();
   }
 
@@ -27,24 +24,17 @@ export class UserController {
   }
 
   @MessagePattern({ cmd: 'create_user' })
-  async create(@Body() data: {
-    model: UserDto
-  }) {
+  async create(@Body() data: { model: UserDto }) {
     return await this.service.create(data.model);
   }
 
   @MessagePattern({ cmd: 'udpate_user' })
-  async update(data: {
-    id,
-    model
-  }) {
+  async update(data: { id; model }) {
     return await this.service.update(data.id, data.model);
   }
 
   @MessagePattern({ cmd: 'delete_user' })
-  async delete(data: {
-    id
-  }) {
+  async delete(data: { id }) {
     return await this.service.delete(data.id);
   }
 
@@ -54,10 +44,8 @@ export class UserController {
   }
 
   @MessagePattern({ cmd: 'verify_token' })
-  async decodeToken(data: {
-    token: string;
-  }): Promise<TokenResponseDto> {
-    this.logger.verbose('Receievd request for token verification ...')
+  async decodeToken(data: { token: string }): Promise<TokenResponseDto> {
+    this.logger.verbose('Receievd request for token verification ...');
     const tokenData = await this.service.decodeToken(data.token);
     return {
       status: tokenData ? HttpStatus.OK : HttpStatus.UNAUTHORIZED,
@@ -67,10 +55,8 @@ export class UserController {
   }
 
   @MessagePattern({ cmd: 'user_details' })
-  async userBasedOnEmail(data: {
-    email: string;
-  }): Promise<UserDto> {
-    this.logger.verbose('Receievd request for get user by email ...')
+  async userBasedOnEmail(data: { email: string }): Promise<UserDto> {
+    this.logger.verbose('Receievd request for get user by email ...');
     return await this.service.findByEmail(data.email);
   }
 }

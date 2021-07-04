@@ -1,7 +1,10 @@
 import { NestFactory } from '@nestjs/core';
 import { Transport } from '@nestjs/microservices';
 import { AppModule } from './app.module';
-import { USER_SERVICE_HOST, USER_SERVICE_PORT} from './common/config/app.config';
+import {
+  USER_SERVICE_HOST,
+  USER_SERVICE_PORT,
+} from './common/config/app.config';
 
 async function bootstrap() {
   const app = await NestFactory.createMicroservice(AppModule, {
@@ -9,7 +12,7 @@ async function bootstrap() {
       retryAttempts: 5,
       retryDelay: 3000,
       port: Number(USER_SERVICE_PORT),
-      host: USER_SERVICE_HOST
+      host: USER_SERVICE_HOST,
     },
     transport: Transport.TCP,
   });
@@ -17,4 +20,3 @@ async function bootstrap() {
   console.log(`Application is running ...`);
 }
 bootstrap();
-

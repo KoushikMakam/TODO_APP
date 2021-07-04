@@ -1,4 +1,4 @@
 export interface ITodo {
-    title: string;
-    active: boolean;
+  title: string;
+  active: boolean;
 }

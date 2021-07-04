@@ -5,7 +5,10 @@ import { User, UserSchema } from 'src/mongo/schemas/user.schema';
 import { TodoService } from './todo/todo.service';
 import { TaskController } from './task/task.controller';
 import { Task, TaskSchema } from 'src/mongo/schemas/task.schema';
-import { TaskHistory, TaskHistorySchema } from 'src/mongo/schemas/task_history.schema';
+import {
+  TaskHistory,
+  TaskHistorySchema,
+} from 'src/mongo/schemas/task_history.schema';
 import { TaskRepository } from 'src/repositories/task.repository';
 import { TodoController } from './todo/todo.controller';
 import { TaskActivityController } from './task-activities/task.activity.controller';
@@ -33,17 +36,18 @@ import { PermissionGuard } from 'src/common/permission.guard';
     {
       provide: USER_SERVICE,
       useFactory: (discoveryService: DiscoveryService) => {
-        const userServiceOptions =  discoveryService.get(USER_SERVICE_KEY)
+        const userServiceOptions = discoveryService.get(USER_SERVICE_KEY);
         return ClientProxyFactory.create(userServiceOptions);
       },
       inject: [DiscoveryService],
     },
     PermissionGuard,
-    TodoService, 
-    TaskService, 
-    TodoRepository, 
-    TaskRepository, 
+    TodoService,
+    TaskService,
+    TodoRepository,
+    TaskRepository,
     TaskActivityService,
-    TaskActivityRepository],
+    TaskActivityRepository,
+  ],
 })
 export class APIServiceModule {}

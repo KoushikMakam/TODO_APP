@@ -1,6 +1,9 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { TODO_SERVICE_HOST, TODO_SERVICE_PORT } from './common/config/app.config';
+import {
+  TODO_SERVICE_HOST,
+  TODO_SERVICE_PORT,
+} from './common/config/app.config';
 import { Transport } from '@nestjs/microservices';
 
 async function bootstrap() {
@@ -9,7 +12,7 @@ async function bootstrap() {
       retryAttempts: 5,
       retryDelay: 3000,
       port: Number(TODO_SERVICE_PORT),
-      host: TODO_SERVICE_HOST
+      host: TODO_SERVICE_HOST,
     },
     transport: Transport.TCP,
   });
