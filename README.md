@@ -26,7 +26,6 @@ This API showcase consists of the following parts:
 - API gateway - entry point for all requests.
 - User service - responsible for CRUD operations on users and verifying permissions for logged in users.
 - Mailer service - responsible for sending out emails.
-- Permission service - responsible for verifying permissions for logged in users.
 - TODO service - responsible for CRUD operations on todo application.
 - The service interact via **TCP sockets**
 
