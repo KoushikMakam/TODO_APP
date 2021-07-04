@@ -1,4 +1,4 @@
-# This repository is the code base for the TODO API build with microservice architecture using nestjs
+# TODO APP build with microservice architecture using nestjs
 
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
