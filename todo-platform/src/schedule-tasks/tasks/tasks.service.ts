@@ -17,19 +17,6 @@ export class ScheduleTasksService {
   @Cron(CRON_TIME)
   async dueDateCrossedCron() {
     
-    const pattern = { cmd: 'mail_send' };
-      const response = await this.mailServiceClient.send(pattern, {
-        to: 'k@m',
-        subject: `[Reminber]Task has passed due date`,
-        html: `<center>
-                <b>Hi there, <br>
-                The task is passed the due date, please take action<br>
-                Regards,<br>
-                Todo team
-                </center>`,
-      }).toPromise();
-      return
-
     if (!Boolean(ENABLE_CRON)) {
       this.logger.verbose('The task due date notification cron is disabled....');
       return
