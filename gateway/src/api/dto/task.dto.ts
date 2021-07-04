@@ -13,14 +13,14 @@ export class TaskRequestDto {
     description: string;
     @ApiProperty({
         required: true,
-        type: Number
+        type: Date
     })
-    startDate: number;
+    startDate: Date;
     @ApiProperty({
         required: true,
-        type: Number
+        type: Date
     })
-    dueDate: number;
+    dueDate: Date;
 }
 
 export class TaskResponseDto extends TaskRequestDto {

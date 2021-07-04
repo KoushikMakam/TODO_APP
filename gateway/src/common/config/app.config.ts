@@ -1,4 +1,4 @@
-export const GATEWAY_SERVICE_PORT= process.env.GATEWAY_SERVICE_PORT ?? 8080;
+export const GATEWAY_SERVICE_PORT= process.env.GATEWAY_SERVICE_PORT ?? 8000;
 
 export const MONGO_CONNECTION = process.env.MONGO_CONNECTION ?? 'mongodb://localhost:27018/todo';
 export const TODO_SERVICE_PORT= process.env.TODO_SERVICE_PORT ?? 3000;

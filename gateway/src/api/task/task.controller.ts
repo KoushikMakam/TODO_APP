@@ -1,3 +1,4 @@
+import { BadRequestException } from '@nestjs/common';
 import { Body, Controller, Delete, Get, Header, Param, Post, Put, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { TaskRequestDto } from '../dto/task.dto';
@@ -33,6 +34,19 @@ export class TaskController {
   @ApiResponse({ status: 201, description: 'The record has been successfully created.' })
   @ApiResponse({ status: 400, description: 'Invalid request.' })
   async create(@Param('todoId') todoId: string, @Body() task: TaskRequestDto) {
+    
+    // Validation
+    const startDate = new Date(task.startDate);
+    const dueDate = new Date(task.dueDate);
+
+    if (!(startDate instanceof Date || dueDate instanceof Date)) {
+      throw new BadRequestException('The dates are invalid')
+    }
+
+    if (dueDate < startDate) {
+      throw new BadRequestException('End date should be greater then start')
+    }
+
     return await this.service.create(todoId, task);
   }
 

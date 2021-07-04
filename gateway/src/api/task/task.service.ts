@@ -13,12 +13,18 @@ export class TaskService {
     }
 
     public async create(todoId: string, task: TaskRequestDto): Promise<TaskResponseDto> {
+        const request = {
+            title: task.title,
+            description: task.description,
+            startDate: new Date(task.startDate).getMilliseconds(),
+            dueDate: new Date(task.dueDate).getMilliseconds()
+        }
         const pattern = { cmd: 'create_task' };
         const response: TaskResponseDto = await this.todoServiceClient.send(
             pattern,
             {
                 todoId,
-                task,
+                request,
                 loggedInUser: this.request[LOGGED_IN_USER]
             }
         ).toPromise();
