@@ -1,12 +1,11 @@
 import { Module } from '@nestjs/common';
 import { ClientProxyFactory } from '@nestjs/microservices';
-import {
-  TODO_SERVICE,
+import { TODO_SERVICE,
   TODO_SERVICE_KEY,
   USER_SERVICE,
   USER_SERVICE_KEY,
-} from 'src/common/config/constant';
-import { DiscoveryService } from 'src/common/service.discovery';
+} from '../common/config/constant';
+import { DiscoveryService } from '../common/service.discovery';
 import { AuthGuard } from './guards/auth.guard';
 import { UserController } from './user/user.controller';
 import { UserService } from './user/user.service';

@@ -26,6 +26,7 @@
     "@nestjs/microservices": "^7.6.18",
     "@nestjs/platform-express": "^7.6.15",
     "@nestjs/swagger": "^4.8.2",
+    "mongoose": "^5.13.2",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.6",
@@ -57,7 +58,8 @@
     "moduleFileExtensions": [
       "js",
       "json",
-      "ts"
+      "ts",
+      "jsx"
     ],
     "rootDir": "src",
     "testRegex": ".*\\.spec\\.ts$",
@@ -68,6 +70,13 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
+    "moduleNameMapper": {
+      "^src/(.*)$": "<rootDir>/$1"
+    }
   }
 }
