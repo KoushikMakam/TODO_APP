@@ -34,3 +34,12 @@ This API showcase consists of the following parts:
 - The service interact via **TCP sockets**
 
 I used one DB instance for all microservices to simplify the application design
+
+## Stay in touch
+
+- Author - [Koushik A Makam](https://github.com/KoushikMakam)
+
+## License
+
+Nest is [MIT licensed](LICENSE).
+
