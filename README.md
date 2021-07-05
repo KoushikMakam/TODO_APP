@@ -21,6 +21,11 @@
 - Start Application - Execute `./start.sh` from the root of the repository
 - Stop Application - Execute `./stop.sh` from the root of the repository
 
+## Launch services for end to end testing (using docker-compose)
+- Configuration - Edit the `.env-e2e` file to modifiy application configuration (change on need based)
+- Start Application - Execute `./e2e-start.sh` from the root of the repository
+- Stop Application - Execute `./e2e-stop.sh` from the root of the repository
+
 ## Accessing the API itself and swagger docs for the API
 - Once you launch the API it will be accessible on port 8000.
 - Swagger docs for the API will be accessible locally via URI "**http://localhost:8000/**"
