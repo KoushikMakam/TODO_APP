@@ -25,7 +25,13 @@ describe('AppController (e2e)', () => {
     await app.close()
   })
 
-  it('Create user and verfiy login sucessful', () => {
+  it('Test - Get User',()=>{
+    return request(app.getHttpServer())
+      .get('/user')
+      .expect(200);
+  })
+
+  it.skip('Test - Create user and verfiy login sucessful', () => {
     const userDetails = {
       name: "Tester1",
       email: "1@2",
