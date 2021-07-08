@@ -1,4 +1,4 @@
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Task, TaskDocument } from 'src/mongo/schemas/task.schema';
@@ -15,7 +15,10 @@ export class TaskRepository {
   }
 
   public async findAllByTodo(todoId: string): Promise<TaskDocument[]> {
-    return this.taskModel.find({ todo_fk: todoId }).sort({ _id: -1 }).exec();
+    return this.taskModel
+      .find({ todo_fk: Types.ObjectId(todoId) })
+      .sort({ _id: -1 })
+      .exec();
   }
 
   public async findOne(id: string): Promise<TaskDocument> {

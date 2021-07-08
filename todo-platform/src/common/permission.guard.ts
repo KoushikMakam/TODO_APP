@@ -7,8 +7,6 @@ import {
 } from '@nestjs/common';
 import { REQUEST } from '@nestjs/core';
 import { Request } from 'express';
-import { LOGGED_IN_USER } from 'src/common/config/constant';
-import { UserDto } from 'src/api/dto/user.dto';
 import { IUser } from 'src/repositories/model/user';
 import { TaskDocument } from 'src/mongo/schemas/task.schema';
 import { TodoDocument } from 'src/mongo/schemas/todo.schema';
@@ -20,7 +18,7 @@ export class PermissionGuard {
   public hasPermission(todo: TodoDocument, loggedInUser: IUser) {
     if (
       todo.owner == loggedInUser['_id'] ||
-      todo.coowner.find((x) => loggedInUser['_id'])
+      todo.coowner.find(loggedInUser['_id'])
     ) {
       return;
     }

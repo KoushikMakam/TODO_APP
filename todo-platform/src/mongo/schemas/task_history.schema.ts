@@ -1,6 +1,5 @@
 import * as mongoose from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Base } from './base.schema';
 import { Task } from './task.schema';
 import { User } from './user.schema';
 

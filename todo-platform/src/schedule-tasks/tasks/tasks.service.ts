@@ -2,6 +2,7 @@ import { HttpStatus, Inject, Injectable, Logger } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { Cron } from '@nestjs/schedule';
 import { CRON_TIME, ENABLE_CRON } from 'src/common/config/app.config';
+import { IUser } from 'src/repositories/model/user';
 import { TaskNotificationRepository } from 'src/repositories/task.notification.repository';
 import { TaskRepository } from 'src/repositories/task.repository';
 
@@ -9,6 +10,7 @@ import { TaskRepository } from 'src/repositories/task.repository';
 export class ScheduleTasksService {
   private readonly logger = new Logger(ScheduleTasksService.name);
   constructor(
+    @Inject('USER_SERVICE') private readonly userServiceClient: ClientProxy,
     @Inject('MAIL_SERVICE') private readonly mailServiceClient: ClientProxy,
     private readonly taskRepository: TaskRepository,
     private readonly taskNotificationRepository: TaskNotificationRepository,
@@ -27,12 +29,18 @@ export class ScheduleTasksService {
     const dbRecords = await this.taskRepository.findRecordsPassedDate(
       Date.now(),
     );
+    const pattern = { cmd: 'mail_send' };
+    const user_pattern = { cmd: 'get_user_by_id' };
     for (const record of dbRecords) {
       this.logger.verbose(`Mail sending for task ${record.title} started ...`);
-      const pattern = { cmd: 'mail_send' };
+      const userDetails: IUser = await this.userServiceClient
+        .send(user_pattern, {
+          id: record.lastUpdatedBy,
+        })
+        .toPromise();
       const response = await this.mailServiceClient
         .send(pattern, {
-          to: record.lastUpdatedBy.email,
+          to: userDetails.email,
           subject: `[Reminber]Task ${record.title} has passed due date`,
           html: `<center>
                 <b>Hi there, <br>

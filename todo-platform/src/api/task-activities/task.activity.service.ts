@@ -1,5 +1,4 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { LOGGED_IN_USER } from 'src/common/config/constant';
 import { TaskHistoryDto } from 'src/api/dto/task.history.dto';
 import { UserDto } from 'src/api/dto/user.dto';
 import { PermissionGuard } from 'src/common/permission.guard';

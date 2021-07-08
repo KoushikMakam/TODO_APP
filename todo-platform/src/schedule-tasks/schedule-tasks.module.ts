@@ -2,7 +2,12 @@ import { Module } from '@nestjs/common';
 import { ClientProxyFactory } from '@nestjs/microservices';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ScheduleModule } from '@nestjs/schedule';
-import { MAIL_SERVICE, MAIL_SERVICE_KEY } from 'src/common/config/constant';
+import {
+  MAIL_SERVICE,
+  MAIL_SERVICE_KEY,
+  USER_SERVICE,
+  USER_SERVICE_KEY,
+} from 'src/common/config/constant';
 import { DiscoveryService } from 'src/common/service.discovery';
 import { Task, TaskSchema } from 'src/mongo/schemas/task.schema';
 import {
@@ -33,6 +38,14 @@ import { ScheduleTasksService } from './tasks/tasks.service';
       useFactory: (discoveryService: DiscoveryService) => {
         const mailServiceOptions = discoveryService.get(MAIL_SERVICE_KEY);
         return ClientProxyFactory.create(mailServiceOptions);
+      },
+      inject: [DiscoveryService],
+    },
+    {
+      provide: USER_SERVICE,
+      useFactory: (discoveryService: DiscoveryService) => {
+        const userServiceOptions = discoveryService.get(USER_SERVICE_KEY);
+        return ClientProxyFactory.create(userServiceOptions);
       },
       inject: [DiscoveryService],
     },
